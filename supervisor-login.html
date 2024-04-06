@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisor Request Panel</title>
+    <link rel="stylesheet" href="css/supervisor-login.css">
+</head>
+<body>
+    <div class="supervisor-panel-container">
+        <h2>Supervisor Request Panel</h2>
+        <table class="supervisor-requests-table">
+            <!-- Table headers -->
+            <tr>
+                <th>ID</th>
+                <th>Problem</th>
+                <th>Severity</th>
+                <th>Priority</th>
+                <th>SubmittedBy</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Timestamp</th>
+                <th>Resolution Date</th>
+            </tr>
+            <!-- Table rows would be dynamically generated here -->
+        </table>
+        <div class="supervisor-actions">
+            <!-- Dropdown for selecting problem -->
+            <label for="problem-select">Problem:</label>
+            <select id="problem-select"></select>
+
+            <!-- Dropdown for selecting severity -->
+            <label for="severity-select">Severity:</label>
+            <select id="severity-select"></select>
+
+            <!-- Dropdown for selecting priority -->
+            <label for="priority-select">Priority:</label>
+            <select id="priority-select"></select>
+
+            <!-- Action buttons -->
+            <button id="mark-resolved">Mark as Resolved</button>
+            <button id="return-review">Return for Review</button>
+            <button id="adjust-priority">Adjust Priority</button>
+        </div>
+    </div>
+
+    <script src="js/supervisor-login.js"></script>
+</body>
+</html>

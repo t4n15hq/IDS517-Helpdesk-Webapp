@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Users')">Users</button>
+            <button class="tablinks" onclick="openTab(event, 'ServiceRequests')">Service Requests</button>
+        </div>
+
+        <div id="Users" class="tabcontent">
+            <table id="usersTable">
+                <tr>
+                    <th>UserID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+                <!-- User entries -->
+            </table>
+            <div class="actions">
+                <button class="action-btn">Add User</button>
+                <button class="action-btn">Edit User</button>
+                <button class="action-btn">Delete User</button>
+                <button class="action-btn">Refresh Users</button>
+            </div>
+        </div>
+
+        <div id="ServiceRequests" class="tabcontent" style="display:none;">
+            <table id="requestsTable">
+                <tr>
+                    <th>RequestID</th>
+                    <th>Problem</th>
+                    <th>Priority</th>
+                    <th>Severity</th>
+                    <th>SubmittedBy</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+                <!-- Service request entries -->
+            </table>
+            <div class="actions">
+                <button class="action-btn">Add Request</button>
+                <button class="action-btn">Edit Request</button>
+                <button class="action-btn">Delete Request</button>
+                <button class="action-btn">Refresh Requests</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

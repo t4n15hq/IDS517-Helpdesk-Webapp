@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Requests - ResolveIT</title>
+    <link rel="stylesheet" href="css/view-requests.css">
+</head>
+<body>
+    <div class="view-requests-container">
+        <div class="search-bar">
+            <label for="ticket-id">Ticket ID:</label>
+            <input type="text" id="ticket-id" name="ticket-id" placeholder="Search by Ticket ID">
+            <button onclick="searchTickets()">Search</button>
+        </div>
+        <table class="requests-table">
+            <tr>
+                <th>RequestID</th>
+                <th>Problem</th>
+                <th>Priority</th>
+                <!-- Add all other table headers -->
+            </tr>
+            <!-- Add table rows here -->
+        </table>
+        <button onclick="window.location.href='supervisor-login.html'" class="back-button">Supervisor Login</button>
+    </div>
+    <script src="js/view-requests.js"></script>
+</body>
+</html>
