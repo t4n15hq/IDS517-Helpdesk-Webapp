@@ -5,45 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supervisor Request Panel</title>
     <link rel="stylesheet" href="css/supervisor-login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="supervisor-panel-container">
-        <h2>Supervisor Request Panel</h2>
+        <div class="header">
+            <img src="logo/1.png" alt="ResolveIT Logo" class="logo">
+            <h2>Supervisor Request Panel</h2>
+        </div>
         <table class="supervisor-requests-table">
-            <!-- Table headers -->
-            <tr>
-                <th>ID</th>
-                <th>Problem</th>
-                <th>Severity</th>
-                <th>Priority</th>
-                <th>SubmittedBy</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Timestamp</th>
-                <th>Resolution Date</th>
-            </tr>
-            <!-- Table rows would be dynamically generated here -->
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Problem</th>
+                    <th>Severity</th>
+                    <th>Priority</th>
+                    <th>SubmittedBy</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Timestamp</th>
+                    <th>Resolution Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows would be dynamically generated here -->
+            </tbody>
         </table>
         <div class="supervisor-actions">
-            <!-- Dropdown for selecting problem -->
-            <label for="problem-select">Problem:</label>
-            <select id="problem-select"></select>
-
-            <!-- Dropdown for selecting severity -->
-            <label for="severity-select">Severity:</label>
-            <select id="severity-select"></select>
-
-            <!-- Dropdown for selecting priority -->
-            <label for="priority-select">Priority:</label>
-            <select id="priority-select"></select>
-
-            <!-- Action buttons -->
-            <button id="mark-resolved">Mark as Resolved</button>
-            <button id="return-review">Return for Review</button>
-            <button id="adjust-priority">Adjust Priority</button>
+            <div class="form-group">
+                <label for="problem-select">Problem:</label>
+                <select id="problem-select"></select>
+            </div>
+            <div class="form-group">
+                <label for="severity-select">Severity:</label>
+                <select id="severity-select"></select>
+            </div>
+            <div class="form-group">
+                <label for="priority-select">Priority:</label>
+                <select id="priority-select"></select>
+            </div>
+            <div class="button-group">
+                <button id="mark-resolved">Mark as Resolved</button>
+                <button id="return-review">Return for Review</button>
+                <button id="adjust-priority">Adjust Priority</button>
+            </div>
         </div>
     </div>
-
     <script src="js/supervisor-login.js"></script>
 </body>
 </html>

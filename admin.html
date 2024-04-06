@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="admin-container">
@@ -12,16 +15,19 @@
             <button class="tablinks" onclick="openTab(event, 'Users')">Users</button>
             <button class="tablinks" onclick="openTab(event, 'ServiceRequests')">Service Requests</button>
         </div>
-
         <div id="Users" class="tabcontent">
             <table id="usersTable">
-                <tr>
-                    <th>UserID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                </tr>
-                <!-- User entries -->
+                <thead>
+                    <tr>
+                        <th>UserID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- User entries -->
+                </tbody>
             </table>
             <div class="actions">
                 <button class="action-btn">Add User</button>
@@ -30,19 +36,22 @@
                 <button class="action-btn">Refresh Users</button>
             </div>
         </div>
-
         <div id="ServiceRequests" class="tabcontent" style="display:none;">
             <table id="requestsTable">
-                <tr>
-                    <th>RequestID</th>
-                    <th>Problem</th>
-                    <th>Priority</th>
-                    <th>Severity</th>
-                    <th>SubmittedBy</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                </tr>
-                <!-- Service request entries -->
+                <thead>
+                    <tr>
+                        <th>RequestID</th>
+                        <th>Problem</th>
+                        <th>Priority</th>
+                        <th>Severity</th>
+                        <th>SubmittedBy</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Service request entries -->
+                </tbody>
             </table>
             <div class="actions">
                 <button class="action-btn">Add Request</button>
@@ -52,7 +61,6 @@
             </div>
         </div>
     </div>
-
     <script src="js/admin.js"></script>
 </body>
 </html>

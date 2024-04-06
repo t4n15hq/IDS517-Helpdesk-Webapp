@@ -5,51 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Request</title>
     <link rel="stylesheet" href="css/create-request.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="create-request-container">
-        <h2>Create New Request</h2>
+        <div class="header">
+            <img src="logo/1.png" alt="ResolveIT Logo" class="logo">
+            <h2>Create New Request</h2>
+        </div>
         <form id="newRequestForm">
-            <label for="problem">Problem:</label>
-            <select id="problem" name="problem">
-                <option value="network">Network Connectivity Issue</option>
-                <option value="software">Software Installation Problem</option>
-                <option value="hardware">Hardware Malfunction</option>
-                <option value="password_reset">Password Reset Request</option>
-                <option value="printer">Printer not Working</option>
-                <option value="email">Email Configuration Issue</option>
-                <option value="file_access">File Access Permission Problem</option>
-                <option value="performance">Slow System Performance</option>
-                <option value="website_access">Website Access Problem</option>
-                <option value="crash">Application Crashing</option>
-                <option value="backup">Data Backup Request</option>
-                <option value="update">System Update Request</option>
-                <option value="lockout">Account Lockout Issue</option>
-            </select>
-
-            <label for="severity">Severity:</label>
-            <select id="severity" name="severity">
-                <option value="critical">Severity 1 - Critical: System Down</option>
-                <option value="high">Severity 2 - High: Major Functionality Impaired</option>
-                <option value="medium">Severity 3 - Medium: Minor Functionality Impaired</option>
-                <option value="low">Severity 4 - Low: Cosmetic Issues</option>
-            </select>
-
-            <label for="submittedBy">Submitted By:</label>
-            <input type="text" id="submittedBy" name="submittedBy" required>
-
-            <label for="description">Detailed Description // Summary:</label>
-            <textarea id="description" name="description" required></textarea>
-
-            <label for="uploadFiles">Upload Files (logs, screenshots):</label>
-            <input type="file" id="uploadFiles" name="uploadFiles" multiple>
-
-            <p><small>No files uploaded</small></p>
-
+            <div class="form-group">
+                <label for="problem">Problem:</label>
+                <select id="problem" name="problem">
+                    <option value="network">Network Connectivity Issue</option>
+                    <option value="software">Software Installation Problem</option>
+                    <option value="hardware">Hardware Malfunction</option>
+                    <option value="password_reset">Password Reset Request</option>
+                    <option value="printer">Printer not Working</option>
+                    <option value="email">Email Configuration Issue</option>
+                    <option value="file_access">File Access Permission Problem</option>
+                    <option value="performance">Slow System Performance</option>
+                    <option value="website_access">Website Access Problem</option>
+                    <option value="crash">Application Crashing</option>
+                    <option value="backup">Data Backup Request</option>
+                    <option value="update">System Update Request</option>
+                    <option value="lockout">Account Lockout Issue</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="severity">Severity:</label>
+                <select id="severity" name="severity">
+                    <option value="critical">Severity 1 - Critical: System Down</option>
+                    <option value="high">Severity 2 - High: Major Functionality Impaired</option>
+                    <option value="medium">Severity 3 - Medium: Minor Functionality Impaired</option>
+                    <option value="low">Severity 4 - Low: Cosmetic Issues</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="submittedBy">Submitted By:</label>
+                <input type="text" id="submittedBy" name="submittedBy" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Detailed Description // Summary:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="uploadFiles">Upload Files (logs, screenshots):</label>
+                <input type="file" id="uploadFiles" name="uploadFiles" multiple>
+                <p><small>No files uploaded</small></p>
+            </div>
             <div class="helpdesk-contact">
                 Helpdesk Contact: <a href="mailto:ids517helpdesk@gmail.com">ids517helpdesk@gmail.com</a>
             </div>
-
             <button type="submit">Submit</button>
         </form>
         <div class="knowledge-base">

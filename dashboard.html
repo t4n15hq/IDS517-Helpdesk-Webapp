@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ResolveIT Dashboard</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="dashboard-container">
-        <h1>Welcome to ResolveIT!</h1>
+        <div class="header">
+            <img src="logo/1.png" alt="ResolveIT Logo" class="logo">
+            <h1>Welcome to ResolveIT!</h1>
+        </div>
         <div class="button-container">
             <button id="view-requests" onclick="location.href='view-requests.html'">View Requests</button>
-
             <button id="create-request" onclick="location.href='create-request.html'">Create Request</button>
         </div>
         <button id="logout" onclick="logout()">Log Out</button>
