@@ -62,6 +62,10 @@ button {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
+    display: block; /* This ensures that margins can be applied */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
 }
 
 button:hover {

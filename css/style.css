@@ -33,11 +33,12 @@ body, html {
 
 .login-form input {
     width: 100%;
-    padding: 12px 15px;
+    padding: 12px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background: #f8f8f8;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 .login-form input:focus {
