@@ -42,6 +42,7 @@ body, html {
 
 .tabcontent {
     padding: 20px;
+    display: none; /* Default state is hidden */
 }
 
 table {
@@ -68,7 +69,7 @@ th {
 }
 
 .action-btn {
-    background: #005A8A; /* Secondary color for buttons */
+    background: #0077B6; /* Secondary color for buttons */
     color: #fff;
     border: none;
     outline: none;
@@ -82,4 +83,242 @@ th {
 
 .action-btn:hover {
     background: #005A8A; /* Hover color for buttons */
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style buttons inside the modal */
+.modal .actions button {
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.modal .actions button[type=submit] {
+    background-color: #0077B6;
+    color: white;
+}
+
+.modal .actions button[type=button] {
+    background-color: #ccc;
+    color: #333;
+}
+
+/* Handle form input fields styling */
+.modal form input[type=text],
+.modal form input[type=email],
+.modal form input[type=password] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+    .modal-content {
+        width: 80%; /* Full width on smaller screens */
+    }
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.actions, .tab {
+    margin-bottom: 20px;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%; /* Could be more or less, depending on screen size */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* A bit of shadow */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Additional styles */
+.tabcontent {
+    display: none; /* Initially hidden */
+}
+
+.tabcontent.active {
+    display: block; /* Show active tab content */
+}
+
+.tablinks.active, .tablinks:hover {
+    background-color: #555; /* Darker grey background on hover/active */
+}
+
+/* Ensure buttons and tab links are always visible */
+.actions, .tab {
+    margin-bottom: 20px;}
+
+/* Modal Content Styling */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Adjust width as necessary */
+}
+
+/* Form Element Styling */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+button {
+    background-color: #007BFF;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Close Button Styling */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Adjustments for small screens */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 80%; /* Smaller width on smaller screens */
+        margin: 20% auto; /* Increase margin-top for visibility */
+    }
 }

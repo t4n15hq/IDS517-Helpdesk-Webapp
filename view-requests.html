@@ -35,12 +35,43 @@
                     <th>ResolutionDate</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Add table rows here -->
+            <tbody id="requests-table-body">
+                <!-- Table rows will be added dynamically here -->
             </tbody>
         </table>
         <button onclick="window.location.href='supervisor-login.html'" class="back-button">Supervisor Login</button>
     </div>
-    <script src="js/view-requests.js"></script>
+    <script>
+        // Fetch data from backend server
+        fetch('/api/requests')
+          .then(response => response.json())
+          .then(data => {
+            const tbody = document.getElementById('requests-table-body');
+
+            // Loop through data and create table rows
+            data.forEach(request => {
+              const tr = document.createElement('tr');
+
+              // Populate table cells with request data
+              tr.innerHTML = `
+                <td>${request.RequestID}</td>
+                <td>${request.Problem}</td>
+                <td>${request.Priority}</td>
+                <td>${request.Severity}</td>
+                <td>${request.Description}</td>
+                <td>${request.Status}</td>
+                <td>${request.Comment}</td>
+                <td>${request.SubmittedBy}</td>
+                <td>${request.Timestamp}</td>
+                <td>${request.ResolutionDate}</td>
+              `;
+
+              tbody.appendChild(tr); // Append row to table body
+            });
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+          });
+    </script>
 </body>
 </html>

@@ -8,12 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="admin-container">
         <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'Users')">Users</button>
-            <button class="tablinks" onclick="openTab(event, 'ServiceRequests')">Service Requests</button>
+            <button class="tablinks" onclick="document.getElementById('Users').style.display='block'; document.getElementById('ServiceRequests').style.display='none';">Users</button>
+            <button class="tablinks" onclick="document.getElementById('ServiceRequests').style.display='block'; document.getElementById('Users').style.display='none';">Service Requests</button>
         </div>
         <div id="Users" class="tabcontent">
             <table id="usersTable">
@@ -26,14 +27,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- User entries -->
+                    <!-- User entries will be here -->
                 </tbody>
             </table>
             <div class="actions">
-                <button class="action-btn">Add User</button>
-                <button class="action-btn">Edit User</button>
+                <button class="action-btn" onclick="document.getElementById('addUserModal').style.display='block'">Add User</button>
+                <button class="action-btn" onclick="document.getElementById('editUserModal').style.display='block'">Edit User</button>
+                <!-- Additional buttons for Delete and Refresh can be added similarly -->
                 <button class="action-btn">Delete User</button>
-                <button class="action-btn">Refresh Users</button>
+                <button class="action-btn">Refresh User</button>
             </div>
         </div>
         <div id="ServiceRequests" class="tabcontent" style="display:none;">
@@ -50,17 +52,151 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Service request entries -->
+                    <!-- Service request entries will be here -->
                 </tbody>
             </table>
             <div class="actions">
-                <button class="action-btn">Add Request</button>
-                <button class="action-btn">Edit Request</button>
+                <button class="action-btn" onclick="document.getElementById('addServiceRequestModal').style.display='block'">Add Request</button>
+                <button class="action-btn" onclick="document.getElementById('editServiceRequestModal').style.display='block'">Edit Request</button>
+                <!-- Additional buttons for Delete and Refresh can be added similarly -->
                 <button class="action-btn">Delete Request</button>
                 <button class="action-btn">Refresh Requests</button>
             </div>
         </div>
     </div>
-    <script src="js/admin.js"></script>
+
+    <!-- Modals for Users -->
+   <!-- Form for adding a new user -->
+<div id="addUserModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('addUserModal').style.display='none'">&times;</span>
+        <h2>Add New User</h2>
+        <form id="addUserForm">
+            <label for="addUserName">Name:</label>
+            <input type="text" id="addUserName" name="name" required>
+            
+            <label for="addUserEmail">Email:</label>
+            <input type="email" id="addUserEmail" name="email" required>
+
+            <label for="addUserPassword">Password:</label>
+            <input type="password" id="addUserPassword" name="password" required>
+            
+            <label for="addUserRole">Role:</label>
+            <select id="addUserRole" name="role">
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="supervisor">Supervisor</option>
+            </select>
+            
+            <button type="button" onclick="document.getElementById('addUserModal').style.display='none'">Cancel</button>
+            <button type="submit">Add User</button>
+        </form>
+    </div>
+</div>
+
+<!-- Form for editing an existing user -->
+<div id="editUserModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('editUserModal').style.display='none'">&times;</span>
+        <h2>Edit User</h2>
+        <form id="editUserForm">
+            <label for="editUserId">User ID:</label>
+            <input type="text" id="editUserId" name="userId" disabled>
+            
+            <label for="editUserName">Name:</label>
+            <input type="text" id="editUserName" name="name" required>
+            
+            <label for="editUserEmail">Email:</label>
+            <input type="email" id="editUserEmail" name="email" required>
+
+            <label for="addUserPassword">Password:</label>
+            <input type="password" id="addUserPassword" name="password" required>
+            
+            <label for="editUserRole">Role:</label>
+            <select id="editUserRole" name="role">
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+                <option value="supervisor">Supervisor</option>
+            </select>
+            
+            <button type="button" onclick="document.getElementById('editUserModal').style.display='none'">Cancel</button>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+
+    <!-- Modals for Service Requests -->
+   <!-- Form for adding a new service request -->
+<div id="addServiceRequestModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('addServiceRequestModal').style.display='none'">&times;</span>
+        <h2>Add New Service Request</h2>
+        <form id="addServiceRequestForm">
+            <label for="requestTitle">Title:</label>
+            <input type="text" id="requestTitle" name="title" required>
+            
+            <label for="requestDescription">Description:</label>
+            <textarea id="requestDescription" name="description" required></textarea>
+            
+            <label for="addRequestSeverity">Severity:</label>
+            <select id="addRequestSeverity" name="Severity">
+                <option value="critical">Severity 1 - Critical: System Down</option>
+                    <option value="high">Severity 2 - High: Major Functionality Impaired</option>
+                    <option value="medium">Severity 3 - Medium: Minor Functionality Impaired</option>
+                    <option value="low">Severity 4 - Low: Cosmetic Issues</option>
+            </select>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="open">Open</option>
+                    <option value="in progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="closed">Closed</option>
+            </select>
+            
+            <button type="button" onclick="document.getElementById('addServiceRequestModal').style.display='none'">Cancel</button>
+            <button type="submit">Add Request</button>
+        </form>
+    </div>
+</div>
+
+<!-- Form for editing an existing service request -->
+<div id="editServiceRequestModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('editServiceRequestModal').style.display='none'">&times;</span>
+        <h2>Edit Service Request</h2>
+        <form id="editServiceRequestForm">
+            <label for="editRequestID">Request ID:</label>
+            <input type="text" id="editRequestID" name="requestId" disabled>
+            
+            <label for="editRequestTitle">Title:</label>
+            <input type="text" id="editRequestTitle" name="title" required>
+            
+            <label for="editRequestDescription">Description:</label>
+            <textarea id="editRequestDescription" name="description" required></textarea>
+            
+            <label for="editRequestSeverity">Severity:</label>
+            <select id="editRequestSeverity" name="severity">
+                <option value="critical">Severity 1 - Critical: System Down</option>
+                    <option value="high">Severity 2 - High: Major Functionality Impaired</option>
+                    <option value="medium">Severity 3 - Medium: Minor Functionality Impaired</option>
+                    <option value="low">Severity 4 - Low: Cosmetic Issues</option>
+            </select>
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="open">Open</option>
+                    <option value="in progress">In Progress</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="closed">Closed</option>
+            </select>
+
+
+            <button type="button" onclick="document.getElementById('editServiceRequestModal').style.display='none'">Cancel</button>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</div>
+<script src="js/admin.js"></script>
 </body>
 </html>
