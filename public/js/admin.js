@@ -51,3 +51,73 @@ function openTab(event, tabName) {
   // Open the default tab
   document.getElementsByClassName("tablinks")[0].click();
   
+  document.addEventListener('DOMContentLoaded', function() {
+    fetchUsers();
+    fetchServiceRequests();
+});
+
+function fetchUsers() {
+    fetch('/api/users')
+    .then(response => response.json())
+    .then(users => {
+        const usersTableBody = document.getElementById('usersTable').querySelector('tbody');
+        usersTableBody.innerHTML = ''; // Clear existing entries
+        users.forEach(user => {
+            const row = `<tr>
+                            <td>${user.UserID}</td>
+                            <td>${user.Name}</td>
+                            <td>${user.Email}</td>
+                            <td>${user.Role}</td>
+                         </tr>`;
+            usersTableBody.innerHTML += row;
+        });
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+fetch('/api/requests')
+ .then(response => response.json())
+ .then(data => {
+   const tbody = document.getElementById('requestsTable');
+
+   // Loop through data and create table rows
+   data.forEach(request => {
+     const tr = document.createElement('tr');
+
+     // Populate table cells with request data
+     tr.innerHTML = `
+       <td>${request.RequestID}</td>
+       <td>${request.Problem}</td>
+       <td>${request.Priority}</td>
+       <td>${request.Severity}</td>
+       <td>${request.SubmittedBy}</td>
+       <td>${request.Description}</td>
+       <td>${request.Status}</td>
+     `;
+
+     tbody.appendChild(tr); // Append row to table body
+   });
+ })
+ .catch(error => {
+   console.error('Error fetching data:', error);
+ });
+
+function populateTable(requests) {
+    const tbody = document.getElementById('requests-table-body');
+    tbody.innerHTML = ''; // Clear existing rows
+
+    requests.forEach(request => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${request.RequestID}</td>
+            <td>${request.Problem}</td>
+            <td>${request.Priority}</td>
+            <td>${request.Severity}</td>
+            <td>${request.SubmittedBy}</td>
+            <td>${request.Description}</td>
+            <td>${request.Status}</td>
+
+        `;
+        tbody.appendChild(tr);
+    });
+}

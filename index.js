@@ -200,6 +200,27 @@ app.patch('/api/requests/:requestId/priority', async (req, res) => { // <-- Open
     } // <-- Closing brace for catch block
     // There may be a missing closing brace here if the error is occurring.
 }); // <-- Closing brace for app.patch
+// Fetch all users
+app.get('/api/users', async (req, res) => {
+    try {
+        const [users] = await pool.query('SELECT * FROM Users');
+        res.json(users);
+    } catch (error) {
+        console.error('Failed to fetch users:', error);
+        res.status(500).json({ message: 'Failed to fetch users' });
+    }
+});
+
+// Fetch all service requests
+app.get('/api/service-requests', async (req, res) => {
+    try {
+        const [requests] = await pool.query('SELECT * FROM ServiceRequests');
+        res.json(requests);
+    } catch (error) {
+        console.error('Failed to fetch service requests:', error);
+        res.status(500).json({ message: 'Failed to fetch service requests' });
+    }
+});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
