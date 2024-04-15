@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResolveIT - Sign Up</title>
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script defer src="js/signup.js"></script>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-header">
+            <img src="logo/1.png" alt="ResolveIT Logo" class="logo">
+            <h1>ResolveIT Helpdesk</h1>
+        </div>
+        <form class="signup-form" id="signupForm" method="POST">
+            <div class="form-group">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="login-link">
+            <a href="index.html">Back to Login</a>
+        </div>
+    </div>
+</body>
+</html>
