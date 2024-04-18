@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
+const multer = require('multer');
+const upload = multer();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -40,24 +42,9 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// User registration route
-app.post('/register', async (req, res) => {
-    try {
-        const { email, password, name } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
-        await pool.execute(
-            'INSERT INTO Users (email, password, name) VALUES (?, ?, ?)',
-            [email, hashedPassword, name]
-        );
-        res.json({ message: 'Registration successful' });
-    } catch (error) {
-        console.error('Registration error:', error);
-        res.status(500).json({ message: 'Error registering user' });
-    }
-});
 
 // User login route
-app.post('/login', async (req, res) => {
+app.post('api/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         const [users] = await pool.execute('SELECT * FROM Users WHERE email = ?', [email]);
@@ -121,14 +108,14 @@ app.get('/api/requests/search', async (req, res) => {
 });
 
 // API route to create a new service request
-app.post('/api/requests/create', async (req, res) => {
+app.post('/api/requests/create',upload.none(), async (req, res) => {
     console.log(req.body);
     const problem = req.body.problem ?? null;
     const severity = req.body.severity ?? null;
     const submittedBy = req.body.submittedBy ?? null;
     const description = req.body.description ?? null;
     const priority = req.body.priority ?? null;
-    const assignedTo = 'IT Helpdesk';
+    const assignedTo = req.body.assignedTo ?? null;
     const status = 'Open';
     const comment = 'In Progress';
 

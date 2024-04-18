@@ -1,59 +1,66 @@
-body, html {
+/* Reset styles */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    height: 100%;
+  }
+  
+  body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(to bottom right, #f8f8f8, #e8e8e8);
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.create-request-container {
+    min-height: 100vh;
+  }
+  
+  .create-request-container {
     max-width: 600px;
-    margin: auto;
+    margin: 20px;
     padding: 40px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: left;
-}
-
-.header {
+  }
+  
+  .header {
     margin-bottom: 30px;
     text-align: center;
-}
-
-.logo {
+  }
+  
+  .logo {
     width: 100px;
     height: auto;
     margin-bottom: 20px;
-}
-
-.form-group {
+  }
+  
+  .form-group {
     margin-bottom: 20px;
-}
-
-label {
+  }
+  
+  label {
     display: block;
     font-weight: 500;
     margin-bottom: 5px;
-}
-
-input[type="text"], textarea, select {
+  }
+  
+  input[type="text"],
+  textarea,
+  select {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
     background-color: #f8f8f8;
     font-size: 16px;
-}
-
-input[type="file"] {
+  }
+  
+  input[type="file"] {
     margin-top: 5px;
-}
-
-button {
+  }
+  
+  button[type="submit"] {
     background-color: #0077B6;
     color: #fff;
     padding: 12px 24px;
@@ -61,43 +68,36 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-
-    display: block; /* This ensures that margins can be applied */
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-}
-
-button:hover {
-    background-color: #005A8A;
-}
-
-.helpdesk-contact {
+    display: block;
+    margin: 20px auto 0;
+  }
+  
+  .helpdesk-contact {
     margin-top: 15px;
     font-size: 0.9em;
-}
-
-.helpdesk-contact a {
+  }
+  
+  .helpdesk-contact a {
     color: #0077B6;
     text-decoration: none;
-}
-
-.helpdesk-contact a:hover {
+  }
+  
+  .helpdesk-contact a:hover {
     text-decoration: underline;
-}
-
-.knowledge-base {
+  }
+  
+  .knowledge-base {
     text-align: center;
     margin-top: 30px;
-}
-
-.knowledge-base a {
+  }
+  
+  .knowledge-base a {
     text-decoration: none;
     color: #0077B6;
     font-weight: 500;
     transition: color 0.3s;
-}
-
-.knowledge-base a:hover {
+  }
+  
+  .knowledge-base a:hover {
     color: #005A8A;
-}
+  }
