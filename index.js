@@ -115,7 +115,7 @@ app.post('/api/requests/create',upload.none(), async (req, res) => {
     const submittedBy = req.body.submittedBy ?? null;
     const description = req.body.description ?? null;
     const priority = req.body.priority ?? null;
-    const assignedTo = req.body.assignedTo ?? null;
+    const assignedTo = 'IT Helpdesk';
     const status = 'Open';
     const comment = 'In Progress';
 
