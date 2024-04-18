@@ -131,23 +131,27 @@ app.post('/api/requests/create',upload.none(), async (req, res) => {
     }
 });
 
-// API route to mark a service request as resolved
+// API route to mark a service request as resolved and update the resolution date
 app.patch('/api/requests/:requestId/resolve', async (req, res) => {
     const requestId = req.params.requestId;
+    const resolutionDate = new Date().toISOString().slice(0, 19).replace('T', ' '); // Format as YYYY-MM-DD HH:MM:SS, suitable for MySQL
+
     try {
         const [result] = await pool.execute(
-            'UPDATE ServiceRequests SET Status = ? WHERE RequestID = ?',
-            ['Resolved', requestId]
+            'UPDATE ServiceRequests SET Status = ?, ResolutionDate = ? WHERE RequestID = ?',
+            ['Resolved', resolutionDate, requestId]
         );
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Service request not found' });
         }
-        res.json({ message: 'Service request marked as resolved.' });
+        // Include the resolution date in the response for potential client-side use
+        res.json({ message: 'Service request marked as resolved.', resolutionDate: resolutionDate });
     } catch (error) {
         console.error('Failed to mark as resolved:', error);
         res.status(500).json({ message: 'Failed to mark as resolved.' });
     }
 });
+
 
 // API route to return a service request for review
 app.patch('/api/requests/:requestId/review', async (req, res) => {
