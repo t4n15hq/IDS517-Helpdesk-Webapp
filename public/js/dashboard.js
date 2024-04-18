@@ -9,6 +9,8 @@ function createRequest() {
 }
 
 function logout() {
-    // Implement the logic for logging out
-    alert('Log Out clicked!');
-}
+    // Add any additional logout functionality here, such as clearing session data
+  
+    // Redirect to index.html
+    window.location.href = 'index.html';
+  }
