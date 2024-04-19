@@ -34,7 +34,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: 'auto' } // for HTTPS use 'true', for HTTP 'false'
+    cookie: { secure: 'TRUE' } // for HTTPS use 'true', for HTTP 'false'
 }));
 
 // Root route that serves the main HTML file
