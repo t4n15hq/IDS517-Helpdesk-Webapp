@@ -13,9 +13,9 @@
 <body>
     <div class="admin-container">
         <div class="tab">
-            <button class="tablinks" onclick="document.getElementById('Users').style.display='block'; document.getElementById('ServiceRequests').style.display='none';">Users</button>
-            <button class="tablinks" onclick="document.getElementById('ServiceRequests').style.display='block'; document.getElementById('Users').style.display='none';">Service Requests</button>
+            <button class="tablinks" onclick="document.getElementById('Users').style.display='block';">Users</button>
         </div>
+        
         <div id="Users" class="tabcontent">
             <table id="usersTable">
                 <thead>
@@ -36,26 +36,9 @@
                 <button class="action-btn">Delete User</button>
             </div>
         </div>
-        <div id="ServiceRequests" class="tabcontent" style="display:none;">
-            <table id="requestsTable">
-                <thead>
-                    <tr>
-                        <th>RequestID</th>
-                        <th>Problem</th>
-                        <th>Priority</th>
-                        <th>Severity</th>
-                        <th>SubmittedBy</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Service request entries will be here -->
-                </tbody>
-            </table>
             <div class="actions">
-                <!-- Additional buttons for Delete and Refresh can be added similarly -->
-                <button class="action-btn">Delete Request</button>
+
+                <button class="action-btn" onclick="window.location.href='visualise.html';">Analyse Service Requests</button>
 
             </div>
         </div>
@@ -91,7 +74,6 @@
 </div>
 
 
-   
 
 <script src="js/admin.js"></script>
 </body>

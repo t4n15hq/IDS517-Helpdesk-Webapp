@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const multer = require('multer');
 const upload = multer();
-
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
-
+app.use(cors());
 // Create a pool for MySQL connections
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 
 
 // User login route
-app.post('api/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         const [users] = await pool.execute('SELECT * FROM Users WHERE email = ?', [email]);
@@ -212,6 +212,62 @@ app.get('/api/service-requests', async (req, res) => {
         res.status(500).json({ message: 'Failed to fetch service requests' });
     }
 });
+
+app.post('/api/users/add', async (req, res) => {
+    const { name, email, password, role } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
+
+    try {
+        const [result] = await pool.execute(
+            'INSERT INTO Users (name, email, password, role) VALUES (?, ?, ?, ?)',
+            [name, email, hashedPassword, role]
+        );
+        res.status(201).json({ message: 'User added successfully', userId: result.insertId });
+    } catch (error) {
+        console.error('Failed to add user:', error);
+        res.status(500).json({ message: 'Failed to add user' });
+    }
+});
+
+app.delete('/api/users/:userId', async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const [result] = await pool.execute(
+            'DELETE FROM Users WHERE userId = ?',
+            [userId]
+        );
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json({ message: 'User deleted successfully' });
+    } catch (error) {
+        console.error('Failed to delete user:', error);
+        res.status(500).json({ message: 'Failed to delete user' });
+    }
+});
+
+app.delete('/api/requests/:requestId', async (req, res) => {
+    const { requestId } = req.params;
+
+    try {
+        const [result] = await pool.execute(
+            'DELETE FROM ServiceRequests WHERE requestId = ?',
+            [requestId]
+        );
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: 'Service request not found' });
+        }
+        res.json({ message: 'Service request deleted successfully' });
+    } catch (error) {
+        console.error('Failed to delete service request:', error);
+        res.status(500).json({ message: 'Failed to delete service request' });
+    }
+});
+
+
+
+
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
