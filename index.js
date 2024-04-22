@@ -46,40 +46,42 @@ app.get('/', (req, res) => {
 // User login route
 app.post('/api/login', async (req, res) => {
     try {
-        const { email, password } = req.body;
-        const [users] = await pool.execute('SELECT * FROM Users WHERE email = ?', [email]);
+        const { username, password } = req.body;
+        
+        // Log the SQL query being executed and the values being passed to it
+        console.log('SQL Query:', 'SELECT * FROM Users WHERE Email = ?', 'Values:', [username]);
 
-        // const [users] = await pool.execute('SELECT * FROM Users WHERE email = ? and password = ?', [email, password])
+        const [users] = await pool.execute('SELECT * FROM Users WHERE Email = ?', [username]);
+
+        // Log the retrieved users from the database
+        console.log('Users:', users);
 
         // Check if user exists
         if (users.length === 0) {
             // If no user is found, respond with an error
-            return res.status(401).json({ message: 'Incorrect email or password' }); // 404 if no users
+            return res.status(401).json({ message: 'Incorrect email or password' });
         }
 
-
-        // else{
-        //     req.session.userId = user.id;
-        //     res.json({message: 'Login successful'});
-        // }
-
         const user = users[0];
-        // Use bcrypt to compare the provided password with the hashed password in the database
-        const passwordMatch = await bcrypt.compare(password, user.password);
 
-        if (passwordMatch) {
-            // If the password matches, set the session variable and respond with success
-            req.session.userId = user.id; // Adjust according to your session logic
-            res.json({ message: 'Login successful' });
+        // Log the retrieved user
+        console.log('User:', user);
+
+        // Compare the provided password with the password in the database
+        if (password === user.Password) {
+            // If the password matches, set the session variable and redirect to the dashboard
+            req.session.userId = user.UserID;
+            return res.redirect('/dashboard.html');
         } else {
             // If the password does not match, respond with an error
-            res.status(401).json({ message: 'Incorrect email or password' });
+            return res.status(401).json({ message: 'Incorrect email or password' });
         }
     } catch (error) {
         console.error('Login error:', error);
-        res.status(500).json({ message: 'Error logging in user' });
+        return res.status(500).json({ message: 'Error logging in user' });
     }
 });
+
 
 // API route to fetch all service requests
 app.get('/api/requests', async (req, res) => {
