@@ -6,12 +6,15 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
 const multer = require('multer');
-const upload = multer();
 const cors = require('cors');
+const nodemailer = require('nodemailer');
+
 const app = express();
 const port = process.env.PORT || 3000;
-app.use(cors());
-// Create a pool for MySQL connections
+
+const upload = multer(); // Initialize multer
+
+// MySQL connection pool setup
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -21,6 +24,56 @@ const pool = mysql.createPool({
     connectionLimit: 10,
     queueLimit: 0
 });
+
+// Nodemailer transporter setup
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD
+    }
+});
+
+app.use(cors());
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: 'auto' }
+}));
+
+// API routes
+app.post('/api/requests/create', upload.none(), async (req, res) => {
+    const { problem, severity, submittedBy, description } = req.body;
+    try {
+        const [result] = await pool.execute(
+            'INSERT INTO ServiceRequests (Problem, Severity, SubmittedBy, Description) VALUES (?, ?, ?, ?)',
+            [problem, severity, submittedBy, description]
+        );
+        const ticketId = result.insertId;
+        const mailOptions = {
+            from: process.env.EMAIL_USERNAME,
+            to: process.env.EMAIL_USERNAME, // Or any other recipient
+            subject: `New Request Created by ${submittedBy}`,
+            text: `A new request with ID ${ticketId} has been submitted:
+Problem: ${problem}
+Severity: ${severity}
+Description: ${description}`
+        };
+
+        await transporter.sendMail(mailOptions);
+        res.status(201).json({ message: "Request created and email sent successfully", ticketId });
+    } catch (error) {
+        console.error('Failed to create request or send email:', error);
+        res.status(500).json({ message: "Failed to create request and send email", error: error.toString() });
+    }
+});
+
+
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
