@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async function(event) {
         event.preventDefault();
         const formData = new FormData(form);
-        const severity = formData.get('severity'); // Get severity before the try block
+        const severity = formData.get('severity');
 
         try {
             const response = await fetch('/api/requests/create', {
@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const data = await response.json();
-            // You need to make sure the server responds with the ticketId in its JSON response
-            const ticketId = data.ticketId;
             const responseTime = getResponseTimeBySeverity(severity);
             const slaMessage = `Helpdesk team will reach out to you within ${responseTime}.`;
             showModal(`Your request has been submitted successfully. ${slaMessage}`);
@@ -58,5 +56,3 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.style.display = "block";
     }
 });
-
-  
